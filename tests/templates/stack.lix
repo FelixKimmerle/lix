@@ -1,0 +1,33 @@
+// A generic container built on top of the built-in vector.
+template <typename T>
+class Stack
+{
+    vector<T> items;
+
+    void push(T item) { items.push(item); }
+    T pop() { return items.pop(); }
+    T top() { return items[items.size() - 1]; }
+    bool empty() { return items.size() == 0; }
+    int size() { return items.size(); }
+}
+
+Stack<int> numbers = Stack<int>();
+for (int i = 0; i < 5; i++) numbers.push(i * i);
+print numbers.top();      // expect: 16
+print numbers.pop();      // expect: 16
+print numbers.size();     // expect: 4
+
+class Point
+{
+    int x;
+    int y;
+    Point(int x, int y) { this.x = x; this.y = y; }
+}
+
+Stack<vector<Point>> paths = Stack<vector<Point>>();
+paths.push([Point(0, 0), Point(1, 0)]);
+paths.push([Point(5, 5)]);
+print paths.pop()[0].x;   // expect: 5
+print paths.top().size(); // expect: 2
+while (!paths.empty()) paths.pop();
+print paths.size();       // expect: 0

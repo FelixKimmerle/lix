@@ -1,0 +1,10 @@
+template <typename T>
+class Bag
+{
+    T value;
+    T doubled() { return value * 2; }  // expect error: Operator '*' cannot be applied to 'string' and 'int'
+}
+Bag<int> numbers = Bag<int>();
+print numbers.doubled();
+Bag<string> words = Bag<string>();
+print words.doubled();

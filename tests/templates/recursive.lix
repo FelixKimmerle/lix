@@ -1,0 +1,45 @@
+// A template that refers to itself: inside Tree<T>, 'Tree' means 'Tree<T>'.
+template <typename T>
+class Tree
+{
+    T value;
+    Tree left;
+    Tree<T> right;
+
+    Tree(T value) { this.value = value; }
+
+    void insert(T v)
+    {
+        if (v < value)
+        {
+            if (left == null) left = Tree(v);
+            else left.insert(v);
+        }
+        else
+        {
+            if (right == null) right = Tree<T>(v);
+            else right.insert(v);
+        }
+    }
+
+    void collect(vector<T> out)
+    {
+        if (left != null) left.collect(out);
+        out.push(value);
+        if (right != null) right.collect(out);
+    }
+}
+
+Tree<int> tree = Tree<int>(50);
+auto values = [30, 70, 20, 40, 60, 80, 35];
+for (int i = 0; i < values.size(); i++) tree.insert(values[i]);
+vector<int> sorted;
+tree.collect(sorted);
+print sorted;     // expect: [20, 30, 35, 40, 50, 60, 70, 80]
+
+Tree<string> words = Tree<string>("m");
+words.insert("a");
+words.insert("z");
+vector<string> out;
+words.collect(out);
+print out;        // expect: ["a", "m", "z"]

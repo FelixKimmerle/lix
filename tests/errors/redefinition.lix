@@ -1,0 +1,5 @@
+int a = 1;
+int a = 2;  // expect error: Redefinition of global variable 'a'
+void f() { int b; int b; }  // expect error: Redefinition of 'b' in the same scope
+void g() {}
+void g() {}  // expect error: Redefinition of 'g' (function overloading is not supported)

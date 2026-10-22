@@ -1,0 +1,2 @@
+void take(vector<int> v) {}
+take(["a"]);  // expect error: Cannot convert 'vector<string>' to 'vector<int>' in argument 1 of 'take'

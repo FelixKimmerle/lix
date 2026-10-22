@@ -1,0 +1,12 @@
+int calls = 0;
+bool touch(bool result)
+{
+    calls = calls + 1;
+    return result;
+}
+print false && touch(true);   // expect: false
+print calls;                  // expect: 0
+print true || touch(true);    // expect: true
+print calls;                  // expect: 0
+print true && touch(false);   // expect: false
+print calls;                  // expect: 1

@@ -1,0 +1,1 @@
+auto v = [];  // expect error: Cannot infer the type of an empty vector literal; write vector<T>() instead

@@ -1,0 +1,4 @@
+BasedOnStyle: Microsoft
+NamespaceIndentation: All
+PointerAlignment: Left
+ColumnLimit: 90

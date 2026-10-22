@@ -1,0 +1,20 @@
+int counter = 10;
+vector<string> log;
+
+void bump()
+{
+    counter += 1;
+    log.push("bump " + cast<string>(counter));
+}
+
+bump();
+bump();
+print counter;  // expect: 12
+print log;      // expect: ["bump 11", "bump 12"]
+
+// A function called before a global's declaration sees the default value, and the
+// vector global is already an empty vector, not null.
+int read_late() { return late; }
+print read_late();  // expect: 0
+int late = 5;
+print read_late();  // expect: 5

@@ -1,0 +1,4 @@
+int x = ;          // expect error: Expected an expression
+print 1 + 2        // expect error: Expected ';' after value
+class Foo { void bar() { } }
+int f() { int g() { return 1; } }  // expect error: Functions can only be declared at the top level

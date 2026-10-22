@@ -1,0 +1,29 @@
+// mode: repl
+1 + 2                                   // expect: 3
+"no semicolon needed"                   // expect: no semicolon needed
+int x = 40;
+x += 2
+x                                       // expect: 42
+int square(int n) {
+    return n * n;
+}
+square(x)                               // expect: 1764
+class P { int a; P(int a) { this.a = a; } }
+auto ps = [P(1), P(2)];
+ps                                      // expect: [P{a: 1}, P{a: 2}]
+ps.push(P(3))
+ps.size()                               // expect: 3
+string s = "{ braces in strings do not continue the entry";
+s.length()                              // expect: 45
+/* a block comment
+   spanning lines */ print "after comment";  // expect: after comment
+for (int i = 0; i < 3; i++)
+{
+    print i;                            // expect: 0
+}                                       // expect: 1
+                                        // expect: 2
+template <typename T> T twice(T v) { return v + v; }
+twice("ab")                             // expect: abab
+twice(2.5)                              // expect: 5.0
+:quit
+print "not reached";

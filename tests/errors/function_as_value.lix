@@ -1,0 +1,2 @@
+int f() { return 1; }
+auto g = f;  // expect error: 'f' is a function; functions are not values

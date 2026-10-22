@@ -1,0 +1,2 @@
+void x;  // expect error: variable 'x' cannot have type 'void'
+vector<void> v;  // expect error: a vector element cannot have type 'void'

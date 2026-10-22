@@ -1,0 +1,1 @@
+int x = "hello";  // expect error: Cannot convert 'string' to 'int' in initializer of 'x'

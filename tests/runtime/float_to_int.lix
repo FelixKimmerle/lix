@@ -1,0 +1,2 @@
+float big = 1e30;
+print cast<int>(big);  // expect runtime error: Cannot convert 1e+30 to int.

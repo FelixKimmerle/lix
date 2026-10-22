@@ -1,0 +1,19 @@
+class Account
+{
+    int balance;
+
+    void deposit(int amount) { balance += amount; }
+    bool withdraw(int amount)
+    {
+        if (!can_withdraw(amount)) return false;
+        balance -= amount;
+        return true;
+    }
+    bool can_withdraw(int amount) { return amount <= balance; }
+}
+
+Account a = Account();
+a.deposit(50);
+print a.withdraw(20);   // expect: true
+print a.withdraw(100);  // expect: false
+print a.balance;        // expect: 30

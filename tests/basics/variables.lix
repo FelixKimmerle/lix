@@ -1,0 +1,37 @@
+int a = 1;
+float b;
+bool c;
+string d;
+print a;  // expect: 1
+print b;  // expect: 0.0
+print c;  // expect: false
+print d;  // expect:
+auto e = 2.5;
+print e;  // expect: 2.5
+float f = 3;
+print f;  // expect: 3.0
+{
+    int a = 10;
+    print a;  // expect: 10
+    a = 11;
+}
+print a;  // expect: 1
+int x = 1;
+int y = x = 5;
+print x;  // expect: 5
+print y;  // expect: 5
+int i = 5;
+print i++;  // expect: 5
+print i;    // expect: 6
+print ++i;  // expect: 7
+print i--;  // expect: 7
+print --i;  // expect: 5
+i *= 3;
+print i;    // expect: 15
+i -= 5;
+i /= 2;
+i %= 3;
+print i;    // expect: 2
+float g = 1.5;
+g++;
+print g;    // expect: 2.5

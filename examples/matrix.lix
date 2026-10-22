@@ -1,0 +1,59 @@
+// A matrix class built from vector<vector<float>>.
+
+class Matrix
+{
+    int rows;
+    int cols;
+    vector<vector<float>> data;
+
+    Matrix(int rows, int cols)
+    {
+        this.rows = rows;
+        this.cols = cols;
+        for (int r = 0; r < rows; r++)
+        {
+            vector<float> row;
+            for (int c = 0; c < cols; c++) row.push(0);
+            data.push(row);
+        }
+    }
+
+    float get(int r, int c) { return data[r][c]; }
+    void set(int r, int c, float value) { data[r][c] = value; }
+
+    Matrix times(Matrix other)
+    {
+        Matrix result = Matrix(rows, other.cols);
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < other.cols; c++)
+            {
+                float sum = 0;
+                for (int k = 0; k < cols; k++) sum += data[r][k] * other.data[k][c];
+                result.data[r][c] = sum;
+            }
+        }
+        return result;
+    }
+}
+
+Matrix identity(int n)
+{
+    Matrix m = Matrix(n, n);
+    for (int i = 0; i < n; i++) m.set(i, i, 1);
+    return m;
+}
+
+Matrix a = Matrix(2, 3);
+int value = 1;
+for (int r = 0; r < 2; r++)
+{
+    for (int c = 0; c < 3; c++) a.set(r, c, value++);
+}
+
+Matrix b = Matrix(3, 2);
+b.data = [[7, 8], [9, 10], [11, 12]];   // vector literals convert int to float
+
+print a.times(b).data;          // [[58.0, 64.0], [139.0, 154.0]]
+print a.times(identity(3)).data == a.data;  // false: vectors compare by identity
+print a.times(identity(3)).get(1, 2);       // 6.0

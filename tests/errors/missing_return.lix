@@ -1,0 +1,4 @@
+int f(int x)  // expect error: Not all paths of 'f' return a value
+{
+    if (x > 0) return 1;
+}

@@ -1,0 +1,51 @@
+int i = 0;
+while (i < 3)
+{
+    print i;    // expect: 0
+    i++;        // expect: 1
+}               // expect: 2
+
+for (int j = 0; j < 3; j++) print j * 10;  // expect: 0
+                                           // expect: 10
+                                           // expect: 20
+int sum = 0;
+for (int k = 0; k < 100; k++)
+{
+    if (k % 2 == 0) continue;
+    if (k > 10) break;
+    int unused = k;
+    sum += k;
+}
+print sum;  // expect: 25
+
+// break and continue have to pop the locals of the loop body
+int n = 0;
+while (true)
+{
+    int a = 1;
+    int b = 2;
+    n += a + b;
+    if (n > 10) break;
+    {
+        int c = 3;
+        if (n < 5) continue;
+    }
+}
+print n;    // expect: 12
+
+for (int outer = 0; outer < 3; outer++)
+{
+    for (int inner = 0; inner < 3; inner++)
+    {
+        if (inner == 1) break;
+        print outer * 10 + inner;  // expect: 0
+    }                              // expect: 10
+}                                  // expect: 20
+
+int count = 0;
+for (;;)
+{
+    count++;
+    if (count == 4) break;
+}
+print count;  // expect: 4

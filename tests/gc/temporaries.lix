@@ -1,0 +1,11 @@
+// Values that only live on the stack while an expression is evaluated must survive a
+// collection in the middle of that expression (run with --gc-stress to make sure).
+string concat_many(int n)
+{
+    string s = "";
+    for (int i = 0; i < n; i++) s = s + cast<string>(i) + ",";
+    return s;
+}
+print concat_many(5);  // expect: 0,1,2,3,4,
+vector<vector<string>> v = [["a" + "b", "c" + "d"], ["e" + cast<string>(1)]];
+print v;  // expect: [["ab", "cd"], ["e1"]]

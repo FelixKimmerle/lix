@@ -1,0 +1,43 @@
+class Point
+{
+    float x;
+    float y;
+
+    Point(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    float length_squared()
+    {
+        return x * x + y * y;   // implicit this
+    }
+
+    Point plus(Point other)
+    {
+        return Point(x + other.x, y + other.y);
+    }
+
+    void scale(float factor)
+    {
+        x *= factor;
+        this.y = this.y * factor;
+    }
+}
+
+Point p = Point(3, 4);
+print p.length_squared();  // expect: 25.0
+print p.x;                 // expect: 3.0
+p.scale(2);
+print p;                   // expect: Point{x: 6.0, y: 8.0}
+Point q = p.plus(Point(1, 1));
+print q.y;                 // expect: 9.0
+print p.plus(q).plus(q).x; // expect: 20.0
+
+// Classes are reference types: assignment shares the object.
+Point r = p;
+r.x = 100;
+print p.x;                 // expect: 100.0
+print r == p;              // expect: true
+print Point(1, 1) == Point(1, 1);  // expect: false

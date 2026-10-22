@@ -1,0 +1,37 @@
+// The example from the original problem: vector<MyClass> and vector<vector<MyClass>>.
+class MyClass
+{
+    int id;
+    vector<float> values;
+
+    MyClass(int id)
+    {
+        this.id = id;
+        for (int i = 0; i < id; i++) values.push(cast<float>(i) / 2);
+    }
+
+    float total()
+    {
+        float sum = 0;
+        for (int i = 0; i < values.size(); i++) sum += values[i];
+        return sum;
+    }
+}
+
+vector<MyClass> objects;
+for (int i = 1; i <= 3; i++) objects.push(MyClass(i));
+print objects[2].total();       // expect: 1.5
+print objects[1];               // expect: MyClass{id: 2, values: [0.0, 0.5]}
+
+vector<vector<MyClass>> table;
+for (int row = 0; row < 3; row++)
+{
+    table.push(vector<MyClass>());
+    for (int col = 0; col <= row; col++) table[row].push(MyClass(col));
+}
+print table[2].size();          // expect: 3
+print table[2][2].values;       // expect: [0.0, 0.5]
+table[2][2].values.push(10);
+print table[2][2].total();      // expect: 10.5
+table[0][0] = null;
+print table[0];                 // expect: [null]

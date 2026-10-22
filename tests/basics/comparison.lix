@@ -1,0 +1,17 @@
+print 1 < 2;            // expect: true
+print 2 <= 2;           // expect: true
+print 3 > 4;            // expect: false
+print 3 >= 4;           // expect: false
+print 1 == 1.0;         // expect: true
+print 1 != 2;           // expect: true
+print true == false;    // expect: false
+print !true;            // expect: false
+print true && false;    // expect: false
+print true || false;    // expect: true
+print true and true;    // expect: true
+print false or true;    // expect: true
+print 1 < 2 && 2 < 3;   // expect: true
+print "a" == "a";       // expect: true
+print "a" != "b";       // expect: true
+print "apple" < "banana";  // expect: true
+print "b" >= "ba";      // expect: false

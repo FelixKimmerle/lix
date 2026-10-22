@@ -1,0 +1,53 @@
+// Functions can be used before they are declared.
+print fib(20);   // expect: 6765
+
+int fib(int n)
+{
+    if (n < 2) return n;
+    return fib(n - 1) + fib(n - 2);
+}
+
+void greet(string name)
+{
+    print "Hello " + name;
+}
+greet("Felix");  // expect: Hello Felix
+
+float average(float a, float b)
+{
+    return (a + b) / 2;
+}
+print average(1, 2);  // expect: 1.5
+
+bool is_even(int n)
+{
+    if (n == 0) return true;
+    return is_odd(n - 1);
+}
+bool is_odd(int n)
+{
+    if (n == 0) return false;
+    return is_even(n - 1);
+}
+print is_even(10);  // expect: true
+
+void early(int n)
+{
+    if (n > 0)
+    {
+        print "positive";
+        return;
+    }
+    print "not positive";
+}
+early(1);   // expect: positive
+early(-1);  // expect: not positive
+
+int loop_return()
+{
+    while (true)
+    {
+        return 42;
+    }
+}
+print loop_return();  // expect: 42

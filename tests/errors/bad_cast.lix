@@ -1,0 +1,1 @@
+print cast<int>("12");  // expect error: Cannot cast 'string' to 'int'

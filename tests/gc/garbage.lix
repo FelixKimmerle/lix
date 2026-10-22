@@ -1,0 +1,27 @@
+// Allocates far more than the GC threshold; only a little is kept alive.
+class Node
+{
+    int value;
+    Node next;
+    vector<string> tags;
+}
+
+Node keep = Node();
+int total = 0;
+for (int i = 0; i < 200000; i++)
+{
+    Node n = Node();
+    n.value = i;
+    n.tags.push("tag" + cast<string>(i));
+    if (i % 50000 == 0)
+    {
+        n.next = keep;
+        keep = n;
+    }
+    total += n.tags[0].length();
+}
+print total;               // expect: 1688890
+print keep.value;          // expect: 150000
+print keep.next.next.value;  // expect: 50000
+print keep.next.next.next.value;  // expect: 0
+print keep.next.next.next.next.next == null;  // expect: true

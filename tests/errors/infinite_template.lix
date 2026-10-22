@@ -1,0 +1,6 @@
+template <typename T>
+class Grow
+{
+    Grow<vector<T>> next;  // expect error: infinitely recursive template
+}
+Grow<int> g;

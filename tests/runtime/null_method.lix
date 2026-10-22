@@ -1,0 +1,3 @@
+class A { void hello() { print "hi"; } }
+A a;
+a.hello();  // expect runtime error: Null reference: cannot call A::hello on null.

@@ -1,0 +1,45 @@
+vector<int> v;
+print v.size();     // expect: 0
+v.push(1);
+v.push(2);
+v.push(3);
+print v;            // expect: [1, 2, 3]
+print v[0] + v[2];  // expect: 4
+v[1] = 20;
+v[1] += 5;
+print v[1];         // expect: 25
+print v.pop();      // expect: 3
+print v;            // expect: [1, 25]
+v.clear();
+print v.size();     // expect: 0
+
+auto w = [1.5, 2.5];
+print w;            // expect: [1.5, 2.5]
+vector<float> promoted = [1, 2.5, 3];
+print promoted;     // expect: [1.0, 2.5, 3.0]
+vector<string> words = ["a", "b"];
+print words;        // expect: ["a", "b"]
+vector<bool> flags = [true, false];
+print flags;        // expect: [true, false]
+vector<int> empty = [];
+print empty;        // expect: []
+print vector<int>().size();  // expect: 0
+
+// vectors are references
+vector<int> alias = v;
+alias.push(9);
+print v;            // expect: [9]
+
+int sum(vector<int> xs)
+{
+    int total = 0;
+    for (int i = 0; i < xs.size(); i++) total += xs[i];
+    return total;
+}
+print sum([1, 2, 3, 4]);  // expect: 10
+
+int x = 0;
+vector<int> counters = [0, 0];
+counters[x++] += 5;   // the index is evaluated only once
+print counters;       // expect: [5, 0]
+print x;              // expect: 1

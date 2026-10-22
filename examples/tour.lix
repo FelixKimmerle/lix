@@ -1,0 +1,97 @@
+// A quick tour of Lix. Run with: lix examples/tour.lix
+
+// ---- Variables and primitive types ------------------------------------------------
+int answer = 42;
+float pi = 3.14159;
+bool ready = true;
+string name = "Lix";
+auto inferred = answer * 2;     // auto takes the type of the initializer
+float widened = answer;         // int converts to float implicitly...
+int narrowed = cast<int>(pi);   // ...but the other way needs an explicit cast
+
+print name + " " + cast<string>(inferred);
+
+// ---- Functions --------------------------------------------------------------------
+// Functions can be called before they are declared.
+print gcd(1071, 462);
+
+int gcd(int a, int b)
+{
+    while (b != 0)
+    {
+        int t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
+}
+
+// ---- Classes ----------------------------------------------------------------------
+class Vec2
+{
+    float x;
+    float y;
+
+    Vec2(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    Vec2 plus(Vec2 other) { return Vec2(x + other.x, y + other.y); }
+    float dot(Vec2 other) { return x * other.x + y * other.y; }
+}
+
+Vec2 a = Vec2(1, 2);
+Vec2 b = a.plus(Vec2(3, 4));
+print b;            // Vec2{x: 4.0, y: 6.0}
+print a.dot(b);     // 16.0
+
+// Class instances are references. Variables of class type start out as null.
+Vec2 nothing;
+print nothing == null;
+
+// ---- Vectors ----------------------------------------------------------------------
+vector<int> primes = [2, 3, 5, 7];
+primes.push(11);
+print primes.size();
+print primes;
+
+vector<vector<Vec2>> rows;
+for (int r = 0; r < 2; r++)
+{
+    vector<Vec2> row;
+    for (int c = 0; c < 3; c++) row.push(Vec2(r, c));
+    rows.push(row);
+}
+print rows[1][2];
+
+// ---- Templates --------------------------------------------------------------------
+template <typename T>
+class Pair
+{
+    T first;
+    T second;
+    Pair(T first, T second)
+    {
+        this.first = first;
+        this.second = second;
+    }
+    Pair<T> swapped() { return Pair<T>(second, first); }
+}
+
+template <typename T>
+T largest(vector<T> items)
+{
+    T best = items[0];
+    for (int i = 1; i < items.size(); i++)
+    {
+        if (items[i] > best) best = items[i];
+    }
+    return best;
+}
+
+print Pair<string>("left", "right").swapped();
+print largest([3, 9, 4]);              // T = int is inferred
+print largest(["pear", "apple"]);      // T = string
+print largest<float>([1, 2.5]);        // or given explicitly

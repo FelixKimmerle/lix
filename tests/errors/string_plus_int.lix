@@ -1,0 +1,1 @@
+print "a" + 1;  // expect error: Operator '+' cannot be applied to 'string' and 'int' (convert with cast<string>(...) first)

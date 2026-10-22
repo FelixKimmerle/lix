@@ -1,0 +1,38 @@
+template <typename T>
+class Box
+{
+    T value;
+    Box(T value) { this.value = value; }
+    T get() { return value; }
+    void set(T value) { this.value = value; }
+}
+
+Box<int> a = Box<int>(5);
+Box<string> b = Box<string>("five");
+print a.get() + 1;          // expect: 6
+print b.get() + "!";        // expect: five!
+a.set(7);
+print a;                    // expect: Box<int>{value: 7}
+Box<Box<float>> nested = Box<Box<float>>(Box<float>(1.5));
+print nested.get().get();   // expect: 1.5
+print nested;               // expect: Box<Box<float>>{value: Box<float>{value: 1.5}}
+
+template <typename K, typename V>
+class Pair
+{
+    K key;
+    V value;
+    Pair(K key, V value)
+    {
+        this.key = key;
+        this.value = value;
+    }
+}
+
+vector<Pair<string, int>> scores;
+scores.push(Pair<string, int>("felix", 10));
+scores.push(Pair<string, int>("lox", 7));
+for (int i = 0; i < scores.size(); i++)
+{
+    print scores[i].key + ": " + cast<string>(scores[i].value);  // expect: felix: 10
+}                                                                 // expect: lox: 7

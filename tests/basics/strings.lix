@@ -1,0 +1,12 @@
+string s = "Hello";
+s = s + ", " + "world";
+print s;                     // expect: Hello, world
+print s.length();            // expect: 12
+s += "!";
+print s;                     // expect: Hello, world!
+print "tab\tand \"quotes\""; // expect: tab	and "quotes"
+string empty;
+print empty.length();        // expect: 0
+print "n = " + cast<string>(42);     // expect: n = 42
+print "f = " + cast<string>(2.5);    // expect: f = 2.5
+print "b = " + cast<string>(true);   // expect: b = true

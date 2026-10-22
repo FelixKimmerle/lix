@@ -1,0 +1,18 @@
+if (true) print "then";       // expect: then
+if (false) print "no"; else print "else";  // expect: else
+int x = 5;
+if (x > 3)
+{
+    print "big";              // expect: big
+}
+else if (x > 1)
+{
+    print "medium";
+}
+else
+{
+    print "small";
+}
+if (x == 5) int y = 3;   // a declaration as branch gets its own scope
+int y = 4;
+print y;                 // expect: 4

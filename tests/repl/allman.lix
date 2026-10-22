@@ -1,0 +1,31 @@
+// mode: repl
+// Braces on their own line: the entry continues until it parses.
+int add(int a, int b)
+{
+    return a + b;
+}
+add(2, 3)                       // expect: 5
+class Counter
+{
+    int n;
+    void tick()
+    {
+        n++;
+    }
+}
+Counter c = Counter();
+for (int i = 0; i < 4; i++)
+    c.tick();
+c.n                             // expect: 4
+if (c.n > 3)
+{
+    print "big";                // expect: big
+}
+else
+{
+    print "small";
+}
+int unfinished =
+    1 +
+    2;
+unfinished                      // expect: 3

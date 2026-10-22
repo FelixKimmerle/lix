@@ -1,0 +1,21 @@
+// Members of a class template are only compiled when they are used, like in C++.
+// 'sum' needs '+' on T, but Bag<string> never calls it, so this compiles.
+template <typename T>
+class Bag
+{
+    vector<T> items;
+    void add(T item) { items.push(item); }
+    int count() { return items.size(); }
+    T sum()
+    {
+        T total = T();
+        for (int i = 0; i < items.size(); i++) total = total * items[i];
+        return total;
+    }
+}
+
+Bag<string> words = Bag<string>();
+words.add("x");
+words.add("y");
+print words.count();  // expect: 2
+print words.items;    // expect: ["x", "y"]

@@ -1,0 +1,8 @@
+class P { int x; void f() {} }
+P p = P();
+print p.y;      // expect error: 'P' has no field 'y'
+p.g();          // expect error: 'P' has no method 'g'
+print p.f;      // expect error: Method 'f' must be called
+vector<int> v;
+print v.length; // expect error: 'vector<int>' has no field 'length' (did you mean length()?)
+v.length();     // expect error: 'vector<int>' has no method 'length' (vectors have push, pop, size and clear)

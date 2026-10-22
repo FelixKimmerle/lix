@@ -1,0 +1,16 @@
+// mode: repl
+// Errors do not end the session, and a failed entry leaves nothing behind.
+print undefined;                         // expect error: Unknown variable 'undefined'
+int broken() { return "no"; }            // expect error: Cannot convert 'string' to 'int'
+broken()                                 // expect error: Unknown function 'broken'
+int broken() { return 7; }
+broken() + 1                             // expect: 8
+int a = 1; print nope;                   // expect error: Unknown variable 'nope'
+int a = 5;
+a                                        // expect: 5
+vector<int> v = [1];
+v[3]                                     // expect runtime error: Vector index 3 out of range
+v.push(2)
+v                                        // expect: [1, 2]
+int a = 6;                               // expect error: Redefinition of global variable 'a'
+a                                        // expect: 5

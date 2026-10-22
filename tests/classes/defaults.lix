@@ -1,0 +1,32 @@
+class Config
+{
+    string name = "default";
+    int retries = 3;
+    vector<int> ports;
+    Config other;
+    float scale;
+}
+
+// Without a constructor, a default constructor runs the field initializers.
+Config c = Config();
+print c;            // expect: Config{name: "default", retries: 3, ports: [], other: null, scale: 0.0}
+c.ports.push(80);
+print c.ports;      // expect: [80]
+print c.other == null;  // expect: true
+
+Config unset;
+print unset;        // expect: null
+
+class Counter
+{
+    int count = 100;
+    Counter(int start)
+    {
+        // field initializers run before the constructor body
+        count += start;
+    }
+    int next() { return count++; }
+}
+Counter counter = Counter(5);
+print counter.next();  // expect: 105
+print counter.next();  // expect: 106

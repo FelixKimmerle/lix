@@ -1,0 +1,7 @@
+print cast<int>(3.99);      // expect: 3
+print cast<int>(-3.99);     // expect: -3
+print cast<float>(7) / 2;   // expect: 3.5
+print cast<bool>(0);        // expect: false
+print cast<bool>(5);        // expect: true
+print cast<int>(true);      // expect: 1
+print cast<string>(10) + cast<string>(20);  // expect: 1020

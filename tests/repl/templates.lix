@@ -1,0 +1,16 @@
+// mode: repl
+template <typename T> class Bag {
+    T v;
+    T dbl() { return v * 2; }
+}
+// Members are compiled when first used. A failing member stays uncompiled and keeps
+// failing instead of leaving broken code behind.
+Bag<string> b = Bag<string>();
+b.dbl()                                  // expect error: <repl>:4:22: error: Operator '*' cannot be applied to 'string' and 'int'
+b.dbl()
+b.v.length()                             // expect: 0
+Bag<float> f = Bag<float>(); print oops; // expect error: Unknown variable 'oops'
+Bag<float> f = Bag<float>();
+f.v = 1.5
+f.dbl()                                  // expect: 3.0
+f                                        // expect: Bag<float>{v: 1.5}

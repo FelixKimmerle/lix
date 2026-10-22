@@ -1,0 +1,19 @@
+// Cyclic garbage is collected by mark and sweep; printing a cycle is cut off.
+class Ring
+{
+    int id;
+    Ring next;
+}
+
+for (int i = 0; i < 20000; i++)
+{
+    Ring a = Ring();
+    Ring b = Ring();
+    a.next = b;
+    b.next = a;
+}
+
+Ring r = Ring();
+r.next = r;
+print r.id;  // expect: 0
+print r.next.next.next.id;  // expect: 0

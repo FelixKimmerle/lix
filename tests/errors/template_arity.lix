@@ -1,0 +1,3 @@
+template <typename T> class Box { T value; }
+Box<int, int> b;  // expect error: Template 'Box' expects 1 type argument(s), got 2
+Box c;            // expect error: Template 'Box' expects 1 type argument(s), got 0

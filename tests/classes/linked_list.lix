@@ -1,0 +1,42 @@
+class Node
+{
+    int value;
+    Node next;
+
+    Node(int value, Node next)
+    {
+        this.value = value;
+        this.next = next;
+    }
+}
+
+class List
+{
+    Node head;
+    int size;
+
+    void push_front(int value)
+    {
+        head = Node(value, head);
+        size++;
+    }
+
+    int sum()
+    {
+        int total = 0;
+        Node node = head;
+        while (node != null)
+        {
+            total += node.value;
+            node = node.next;
+        }
+        return total;
+    }
+}
+
+List list = List();
+for (int i = 1; i <= 10; i++) list.push_front(i);
+print list.size;    // expect: 10
+print list.sum();   // expect: 55
+print list.head.value;  // expect: 10
+print list.head.next.next.value;  // expect: 8

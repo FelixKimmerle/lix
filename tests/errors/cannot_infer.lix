@@ -1,0 +1,2 @@
+template <typename T> T make() { return T(); }
+print make();  // expect error: Cannot infer template argument 'T' of 'make'

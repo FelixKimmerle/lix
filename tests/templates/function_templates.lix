@@ -1,0 +1,62 @@
+template <typename T>
+T max(T a, T b)
+{
+    if (a > b) return a;
+    return b;
+}
+
+print max(3, 9);            // expect: 9
+print max(2.5, 1.5);        // expect: 2.5
+print max<float>(1, 2.5);   // expect: 2.5
+
+template <typename T>
+int count(vector<T> items, T needle)
+{
+    int n = 0;
+    for (int i = 0; i < items.size(); i++)
+    {
+        if (items[i] == needle) n++;
+    }
+    return n;
+}
+
+print count([1, 2, 1, 3, 1], 1);        // expect: 3
+print count(["a", "b", "a"], "a");      // expect: 2
+
+template <typename T>
+vector<T> repeat(T value, int times)
+{
+    vector<T> result;
+    for (int i = 0; i < times; i++) result.push(value);
+    return result;
+}
+print repeat("ab", 3);                  // expect: ["ab", "ab", "ab"]
+print repeat(repeat(0, 2), 2);          // expect: [[0, 0], [0, 0]]
+
+template <typename T>
+class Box
+{
+    T value;
+    Box(T value) { this.value = value; }
+}
+
+// Inference looks inside template classes too.
+template <typename T>
+T unbox(Box<T> box) { return box.value; }
+print unbox(Box<string>("inside"));     // expect: inside
+
+// T() is the default value of T.
+template <typename T>
+T zero() { return T(); }
+print zero<int>();                      // expect: 0
+print zero<string>().length();          // expect: 0
+print zero<vector<int>>();              // expect: []
+
+// Recursion inside a template instantiation.
+template <typename T>
+T sum_to(T n)
+{
+    if (n <= 0) return n;
+    return n + sum_to(n - 1);
+}
+print sum_to(10);                       // expect: 55

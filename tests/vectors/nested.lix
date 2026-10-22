@@ -1,0 +1,19 @@
+vector<vector<int>> grid;
+for (int r = 0; r < 3; r++)
+{
+    vector<int> row;
+    for (int c = 0; c < 3; c++) row.push(r * 3 + c);
+    grid.push(row);
+}
+print grid;           // expect: [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+print grid[1][2];     // expect: 5
+grid[2][0] = 60;
+grid[0][0]++;
+print grid[2];        // expect: [60, 7, 8]
+print grid[0][0];     // expect: 1
+
+auto cube = [[[1, 2], [3]], [[4]]];
+print cube;               // expect: [[[1, 2], [3]], [[4]]]
+print cube[0][1][0];      // expect: 3
+vector<vector<vector<int>>> typed = cube;
+print typed.size();       // expect: 2

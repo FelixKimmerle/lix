@@ -1,0 +1,3 @@
+void inner(vector<int> v) { v[5] = 1; }
+void outer() { inner(vector<int>()); }
+outer();  // expect runtime error: at inner (line 1, 0008 VEC_SET)

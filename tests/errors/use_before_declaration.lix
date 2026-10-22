@@ -1,0 +1,2 @@
+print x;  // expect error: Use of global 'x' before its declaration
+int x = 1;

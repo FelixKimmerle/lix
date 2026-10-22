@@ -1,0 +1,67 @@
+// A generic quicksort. Works for every T that supports '<'.
+
+template <typename T>
+void swap(vector<T> items, int i, int j)
+{
+    T tmp = items[i];
+    items[i] = items[j];
+    items[j] = tmp;
+}
+
+template <typename T>
+int partition(vector<T> items, int low, int high)
+{
+    T pivot = items[high];
+    int i = low;
+    for (int j = low; j < high; j++)
+    {
+        if (items[j] < pivot)
+        {
+            swap(items, i, j);
+            i++;
+        }
+    }
+    swap(items, i, high);
+    return i;
+}
+
+template <typename T>
+void quicksort(vector<T> items, int low, int high)
+{
+    if (low >= high) return;
+    int p = partition(items, low, high);
+    quicksort(items, low, p - 1);
+    quicksort(items, p + 1, high);
+}
+
+template <typename T>
+void sort(vector<T> items)
+{
+    quicksort(items, 0, items.size() - 1);
+}
+
+vector<int> numbers = [38, 27, 43, 3, 9, 82, 10];
+sort(numbers);
+print numbers;
+
+vector<string> words = ["lox", "felix", "clox", "jlox", "lix"];
+sort(words);
+print words;
+
+// Pseudo random numbers to sort a bigger vector.
+int seed = 12345;
+int next_random()
+{
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    return seed;
+}
+
+vector<float> values;
+for (int i = 0; i < 10000; i++) values.push(cast<float>(next_random() % 100000) / 100);
+sort(values);
+bool sorted = true;
+for (int i = 1; i < values.size(); i++)
+{
+    if (values[i - 1] > values[i]) sorted = false;
+}
+print "10000 floats sorted: " + cast<string>(sorted);

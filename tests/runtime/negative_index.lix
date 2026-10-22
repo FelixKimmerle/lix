@@ -1,0 +1,2 @@
+vector<int> v = [1];
+v[-1] = 5;    // expect runtime error: Vector index -1 out of range (size 1).

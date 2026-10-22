@@ -1,0 +1,2 @@
+int x = null;  // expect error: Cannot convert 'null' to 'int' in initializer of 'x' (only class types can be null)
+vector<int> v = null;  // expect error: Cannot convert 'null' to 'vector<int>'

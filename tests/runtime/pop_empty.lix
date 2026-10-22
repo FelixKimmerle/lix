@@ -1,0 +1,2 @@
+vector<string> v;
+v.pop();  // expect runtime error: pop() on an empty vector.

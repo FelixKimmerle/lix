@@ -1,0 +1,1 @@
+vector<Foo> v;  // expect error: Unknown type 'Foo'

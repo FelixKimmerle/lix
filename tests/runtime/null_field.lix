@@ -1,0 +1,4 @@
+class Node { int value; Node next; }
+Node n = Node();
+print n.value;       // expect: 0
+print n.next.value;  // expect runtime error: Null reference: cannot read a field of null.
